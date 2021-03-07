@@ -13,10 +13,10 @@ public interface VotacaoRepository extends JpaRepository<Votacao, Long> {
 
     @Modifying
     @Query(
-            value =
-                    "insert into Votacao (id_associado, id_pauta, voto) values (:id_associado, :id_pauta, :voto)",
+            value ="insert into Votacao (id_associado, id_pauta, votoSim, votoNao) values (:id_associado, :id_pauta, :votoSim, :votoNao)",
             nativeQuery = true)
     Votacao votar(@Param("associadoId") Long associadoId,
                     @Param("pautaId") Long pautaId,
-                    @Param("voto") String voto);
+                    @Param("voto") Long votoSim,
+                    @Param("voto") Long votoNao);
 }

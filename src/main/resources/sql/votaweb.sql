@@ -61,52 +61,54 @@ INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`) VALUES ('9', 'Teme
 INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`) VALUES ('10', 'Dilminha');
 
 # ************************************************************
+# *************************SESSAO*****************************
+# ************************************************************
+CREATE TABLE `votaweb_db`.`sessao`
+(
+    `id`             int(11) NOT NULL,
+    `inicio_sessao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `termino_sessao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `mensagem_termino` varchar(8) DEFAULT 'true' COMMENT 'true, false',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `votaweb_db`.`sessao`
+    CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
+    ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
+
+INSERT INTO `votaweb_db`.`sessao` (`id`, `inicio_sessao`, `termino_sessao`, `mensagem_termino`) VALUES ('1', '2018-10-21 12:24:51', '2018-10-21 12:24:51', 'true');
+
+# ************************************************************
 # *************************VOTACAO****************************
 # ************************************************************
 CREATE TABLE `votaweb_db`.`votacao`
 (
-    `id`           int(11)  NOT NULL ,
-    `id_associado` int(11)  DEFAULT NULL,
-    `id_pauta`     int(11)  DEFAULT NULL,
-    `voto`         varchar(8) DEFAULT 'sim' COMMENT 'sim, nao',
+    `id`           int(11) NOT NULL ,
+    `id_associado` int(11) DEFAULT NULL,
+    `id_pauta`     int(11) DEFAULT NULL,
+    `id_sessao`     int(11) DEFAULT NULL,
+    `voto_sim`     int(11) DEFAULT NULL,
+    `voto_nao`     int(11) DEFAULT NULL,
     PRIMARY KEY (`id`),
     KEY            `associado` (`id_associado`),
     KEY            `pauta` (`id_pauta`),
+    KEY            `sessao` (`id_sessao`),
     CONSTRAINT `id_associado_votacao` FOREIGN KEY (`id_associado`) REFERENCES `associado` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-    CONSTRAINT `id_associado_pauta` FOREIGN KEY (`id_pauta`) REFERENCES `pauta` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+    CONSTRAINT `id_associado_pauta` FOREIGN KEY (`id_pauta`) REFERENCES `pauta` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+    CONSTRAINT `id_associado_sessao` FOREIGN KEY (`id_sessao`) REFERENCES `sessao` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `votaweb_db`.`votacao`
     CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
     ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
 
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `voto`) VALUES ('1', '1', '1', 'sim');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `voto`) VALUES ('2', '1', '2', 'nao');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `voto`) VALUES ('3', '2', '1', 'nao');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `voto`) VALUES ('4', '2', '2', 'sim');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `voto`) VALUES ('5', '3', '1', 'sim');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `voto`) VALUES ('6', '3', '2', 'sim');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `voto`) VALUES ('7', '4', '1', 'nao');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `voto`) VALUES ('8', '4', '2', 'nao');
+INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('9', '5', '2', '1', '1', '0');
+INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('1', '1', '1', '1', '1', '0');
+INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('2', '1', '1', '1', '1', '0');
+INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('3', '2', '1', '1', '1', '0');
+INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('4', '2', '1', '1', '1', '0');
+INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('5', '3', '1', '1', '1', '0');
+INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('6', '3', '1', '1', '1', '0');
+INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('7', '4', '1', '1', '1', '0');
+INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('8', '4', '1', '1', '1', '0');
 
-# ************************************************************
-# *************************SESSAO*****************************
-# ************************************************************
-CREATE TABLE `votaweb_db`.`sessao`
-(
-    `id`             int(11) NOT NULL,
-    `id_pauta`     int(11)  DEFAULT NULL,
-    `id_associado` int(11)  DEFAULT NULL,
-    `inicio_sessao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `termino_sessao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `mensagem_termino` varchar(8) DEFAULT 'true' COMMENT 'true, false',
-    PRIMARY KEY (`id`),
-    KEY            `associado` (`id_associado`),
-    KEY            `pauta` (`id_pauta`),
-    CONSTRAINT `id_sessao_votacao` FOREIGN KEY (`id_associado`) REFERENCES `associado` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-    CONSTRAINT `id_sessao_pauta` FOREIGN KEY (`id_pauta`) REFERENCES `pauta` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-ALTER TABLE `votaweb_db`.`sessao`
-    CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
-    ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);

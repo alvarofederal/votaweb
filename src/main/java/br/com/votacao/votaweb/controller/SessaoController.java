@@ -1,19 +1,22 @@
 package br.com.votacao.votaweb.controller;
 
 import br.com.votacao.votaweb.model.Sessao;
-import br.com.votacao.votaweb.model.Votacao;
 import br.com.votacao.votaweb.service.SessaoService;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 //@RequestMapping("/sessoes")
 @RequestMapping(value = "/api/v1", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class SessaoController {
+
+    Logger logger= (Logger) LoggerFactory.getLogger(SessaoService.class);
 
     @Autowired
     SessaoService sessaoService;
@@ -23,14 +26,14 @@ public class SessaoController {
         return ResponseEntity.ok().body(sessaoService.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/sessoes/{id}")
     public ResponseEntity<Sessao> buscaPorId(@PathVariable Long id) {
         return ResponseEntity.ok().body(sessaoService.findById(id).get());
     }
 
     @RequestMapping(value = "/sessoes/{sessaoId}/abrir-sessao", method = RequestMethod.POST)
-    public ResponseEntity<Sessao> abrirSessao(@PathVariable Long sessaoId, @RequestBody Sessao sessao) {
-        return ResponseEntity.ok(sessaoService.abrirSessao(sessaoId, sessao));
+    public ResponseEntity<Sessao> abrirSessao(@PathVariable Long sessaoId) {
+        return ResponseEntity.ok(sessaoService.abrirSessao(sessaoId));
     }
 
     //Metodo para abrir sessao
@@ -39,7 +42,7 @@ public class SessaoController {
                                  @RequestBody Sessao sessao) {
         return sessaoService.findById(id)
                 .map(record -> {
-                    record.setInicioVotacao(sessao.getInicioVotacao());
+                    record.setInicioSessao(sessao.getInicioSessao());
                     Sessao updated = sessaoService.save(record);
                     return ResponseEntity.ok().body(updated);
                 }).orElse(ResponseEntity.notFound().build());

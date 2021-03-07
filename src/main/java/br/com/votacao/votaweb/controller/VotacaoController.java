@@ -1,24 +1,26 @@
 package br.com.votacao.votaweb.controller;
 
-import java.net.URI;
-import java.util.List;
-
-import br.com.votacao.votaweb.model.Pauta;
 import br.com.votacao.votaweb.model.Votacao;
 import br.com.votacao.votaweb.repository.AssociadoRepository;
 import br.com.votacao.votaweb.repository.PautaRepository;
-import br.com.votacao.votaweb.repository.VotacaoRepository;
 import br.com.votacao.votaweb.service.VotacaoService;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
+import java.util.List;
+import java.util.logging.Logger;
+
 @RestController
 //@RequestMapping("/votacoes")
 @RequestMapping(value = "/api/v1", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class VotacaoController {
+
+    Logger logger= (Logger) LoggerFactory.getLogger(VotacaoService.class);
 
     @Autowired
     VotacaoService votacaoService;
@@ -29,27 +31,48 @@ public class VotacaoController {
     @Autowired
     AssociadoRepository associadoRepository;
 
-    @GetMapping
+    @GetMapping("/votacoes")
     public ResponseEntity<List<Votacao>> listaVotacaos() {
         return ResponseEntity.ok().body(votacaoService.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/votacoes/{id}")
     public ResponseEntity<Votacao> buscaPorId(@PathVariable Long id) {
         return ResponseEntity.ok().body(votacaoService.findById(id).get());
     }
 
-    @PostMapping(consumes = "application/json")
-    public ResponseEntity<?> adicionaVotacao(@RequestBody Votacao votacao) {
-        Votacao votacaoSalvo = votacaoService.save(votacao);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("/votacaos").path("/{id}")
-                .buildAndExpand(votacaoSalvo.getId()).toUri();
-        return ResponseEntity.created(uri).build();
-    }
+//    @PostMapping(path = "/members")
+//    public void addMemberV1(@RequestBody Member member) {
+//        //code
+//    }
+//
+//    @PostMapping(path = "/members", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public void addMemberV2(@RequestBody Member member) {
+//        //code
+//    }
+//
+//    @GetMapping("/home")
+//    public String homeInit(Model model) {
+//        return "home";
+//    }
+//
+//    @GetMapping("/members/{id}")
+//    public String getMembers(Model model) {
+//        return "member";
+//    }
 
-    @RequestMapping(value = "/votacao/{id}/sessao", method = RequestMethod.POST)
-    public ResponseEntity<Votacao> votar(@PathVariable Long associadoId,@PathVariable Long pautaId, @RequestBody String voto) {
-        return ResponseEntity.ok(votacaoService.votar(associadoId, pautaId, voto));
+//    @PostMapping(path = "/votacao", consumes = "application/json")
+//    public ResponseEntity<?> adicionaVotacao(@RequestBody Votacao votacao) {
+//        Votacao votacaoSalvo = votacaoService.save(votacao);
+//        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("/votacaos").path("/{id}")
+//                .buildAndExpand(votacaoSalvo.getId()).toUri();
+//        return ResponseEntity.created(uri).build();
+//    }
+
+    // Metodo principal para votar na pauta
+    @RequestMapping(value = "/votacao", method = RequestMethod.POST)
+    public ResponseEntity<Votacao> votar(@RequestBody Votacao votacao) {
+        return ResponseEntity.ok(votacaoService.votar(votacao));
     }
 
 }

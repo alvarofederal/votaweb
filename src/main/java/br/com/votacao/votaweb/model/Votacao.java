@@ -3,11 +3,12 @@ package br.com.votacao.votaweb.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "votacao")
 @Data
-public class Votacao {
+public class Votacao implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +22,12 @@ public class Votacao {
     @JoinColumn(name = "id_associado")
     private Associado associado;
 
-    private String voto;
+    @OneToOne
+    @JoinColumn(name = "id_sessao")
+    private Sessao sessao;
+
+    private Long votoSim;
+
+    private Long votoNao;
 
 }

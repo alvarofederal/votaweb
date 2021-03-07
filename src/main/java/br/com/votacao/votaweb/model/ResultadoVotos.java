@@ -6,12 +6,18 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "associado")
+@Table(name = "resultados_votos")
 @Data
-public class Associado implements Serializable {
+public class ResultadoVotos implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nomeAssociado;
+
+    private Boolean votoComputado;
+
+    private Long countSim;
+
+    private Long countNao;
+
 }

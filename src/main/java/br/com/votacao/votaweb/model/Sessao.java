@@ -15,20 +15,13 @@ public class Sessao implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "id_pauta")
-    private Pauta pauta;
+    private LocalDateTime inicioSessao;
 
-    @OneToOne
-    @JoinColumn(name = "id_associado")
-    private Associado associado;
+    private LocalDateTime terminoSessao;
 
-    @JoinColumn(name = "inicio_sessao")
-    private LocalDateTime inicioVotacao;
+    private Boolean mensagemTermino;
 
-    @JoinColumn(name = "termino_sessao")
-    private LocalDateTime terminoVotacao;
+    public Sessao() {
 
-    private Boolean enviarMensagemVotacaoTerminada;
-
+    }
 }
