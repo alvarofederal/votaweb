@@ -4,6 +4,7 @@ import br.com.votacao.votaweb.model.Votacao;
 import br.com.votacao.votaweb.repository.AssociadoRepository;
 import br.com.votacao.votaweb.repository.PautaRepository;
 import br.com.votacao.votaweb.service.VotacaoService;
+import lombok.Data;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -16,11 +17,10 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
-//@RequestMapping("/votacoes")
-@RequestMapping(value = "/api/v1", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/v1/votacoes")
 public class VotacaoController {
 
-    Logger logger= (Logger) LoggerFactory.getLogger(VotacaoService.class);
+//    Logger logger= (Logger) LoggerFactory.getLogger(VotacaoController.class);
 
     @Autowired
     VotacaoService votacaoService;
@@ -31,12 +31,12 @@ public class VotacaoController {
     @Autowired
     AssociadoRepository associadoRepository;
 
-    @GetMapping("/votacoes")
+    @GetMapping("/")
     public ResponseEntity<List<Votacao>> listaVotacaos() {
         return ResponseEntity.ok().body(votacaoService.findAll());
     }
 
-    @GetMapping("/votacoes/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Votacao> buscaPorId(@PathVariable Long id) {
         return ResponseEntity.ok().body(votacaoService.findById(id).get());
     }
@@ -70,7 +70,7 @@ public class VotacaoController {
 //    }
 
     // Metodo principal para votar na pauta
-    @RequestMapping(value = "/votacao", method = RequestMethod.POST)
+    @PostMapping(consumes = "application/json")
     public ResponseEntity<Votacao> votar(@RequestBody Votacao votacao) {
         return ResponseEntity.ok(votacaoService.votar(votacao));
     }

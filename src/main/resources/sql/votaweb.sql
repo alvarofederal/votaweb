@@ -66,8 +66,8 @@ INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`) VALUES ('10', 'Dil
 CREATE TABLE `votaweb_db`.`sessao`
 (
     `id`             int(11) NOT NULL,
-    `inicio_sessao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `termino_sessao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `inicio_sessao` datetime NOT NULL,
+    `termino_sessao` datetime NOT NULL,
     `mensagem_termino` varchar(8) DEFAULT 'true' COMMENT 'true, false',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
