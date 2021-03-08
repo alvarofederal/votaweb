@@ -6,11 +6,11 @@
 #### CONFIGURACÃO HEROKU
 
 A API de back-end do Desafio Técnico Back End da IBM 
-se encontra na URL ...
+se encontra na URL https://votaweb.herokuapp.com/
 
 #### URL'S DA API
 
-...
+API's no SWAGGER: https://votaweb.herokuapp.com/swagger-ui.html
 
 #### VERSIONAMENTO
 Apesar de existirem várias formas de versionamento,
