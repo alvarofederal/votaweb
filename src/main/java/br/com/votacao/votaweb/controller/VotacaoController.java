@@ -3,18 +3,15 @@ package br.com.votacao.votaweb.controller;
 import br.com.votacao.votaweb.model.Votacao;
 import br.com.votacao.votaweb.repository.AssociadoRepository;
 import br.com.votacao.votaweb.repository.PautaRepository;
-import br.com.votacao.votaweb.service.VotacaoService;
-import lombok.Data;
-import org.slf4j.LoggerFactory;
+import br.com.votacao.votaweb.repository.VotacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping(value = "/api/v1/votacoes")
@@ -23,7 +20,7 @@ public class VotacaoController {
 //    Logger logger= (Logger) LoggerFactory.getLogger(VotacaoController.class);
 
     @Autowired
-    VotacaoService votacaoService;
+    VotacaoRepository votacaoRepository;
 
     @Autowired
     PautaRepository pautaRepository;
@@ -33,12 +30,12 @@ public class VotacaoController {
 
     @GetMapping("/")
     public ResponseEntity<List<Votacao>> listaVotacaos() {
-        return ResponseEntity.ok().body(votacaoService.findAll());
+        return ResponseEntity.ok().body(votacaoRepository.findAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Votacao> buscaPorId(@PathVariable Long id) {
-        return ResponseEntity.ok().body(votacaoService.findById(id).get());
+        return ResponseEntity.ok().body(votacaoRepository.findById(id).get());
     }
 
 //    @PostMapping(path = "/members")
@@ -70,10 +67,10 @@ public class VotacaoController {
 //    }
 
     // Metodo principal para votar na pauta
-    @PostMapping(consumes = "application/json")
-    public ResponseEntity<Votacao> votar(@RequestBody Votacao votacao) {
-        return ResponseEntity.ok(votacaoService.votar(votacao));
-    }
+//    @PostMapping(consumes = "application/json")
+//    public ResponseEntity<Votacao> votar(@RequestBody Votacao votacao) {
+//        return ResponseEntity.ok(votacaoRepository.votar(votacao));
+//    }
 
 }
 
