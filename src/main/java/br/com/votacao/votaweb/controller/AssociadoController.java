@@ -2,6 +2,8 @@ package br.com.votacao.votaweb.controller;
 
 import br.com.votacao.votaweb.model.Associado;
 import br.com.votacao.votaweb.repository.AssociadoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +16,7 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/associados")
 public class AssociadoController {
 
-//    Logger logger= (Logger) LoggerFactory.getLogger(AssociadoController.class);
+    private Logger logger = LoggerFactory.getLogger(AssociadoController.class);
 
     @Autowired
     AssociadoRepository associadoRepository;
@@ -34,6 +36,7 @@ public class AssociadoController {
         Associado associadoSalvo = associadoRepository.save(associado);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("/associados").path("/{id}")
                 .buildAndExpand(associadoSalvo.getId()).toUri();
+        logger.info("Associado criado com sucesso!");
         return ResponseEntity.created(uri).build();
     }
 

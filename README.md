@@ -12,6 +12,8 @@ se encontra na URL https://votaweb.herokuapp.com/
 
 API's no SWAGGER: https://votaweb.herokuapp.com/swagger-ui.html
 
+https://votaweb.herokuapp.com/api/v1/sessoes/
+
 #### VERSIONAMENTO
 Apesar de existirem várias formas de versionamento,
 

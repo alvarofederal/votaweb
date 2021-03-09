@@ -4,20 +4,21 @@ import br.com.votacao.votaweb.model.Votacao;
 import br.com.votacao.votaweb.repository.AssociadoRepository;
 import br.com.votacao.votaweb.repository.PautaRepository;
 import br.com.votacao.votaweb.repository.VotacaoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/votacoes")
 public class VotacaoController {
 
-//    Logger logger= (Logger) LoggerFactory.getLogger(VotacaoController.class);
+    private Logger logger = LoggerFactory.getLogger(VotacaoController.class);
 
     @Autowired
     VotacaoRepository votacaoRepository;
@@ -58,13 +59,14 @@ public class VotacaoController {
 //        return "member";
 //    }
 
-//    @PostMapping(path = "/votacao", consumes = "application/json")
-//    public ResponseEntity<?> adicionaVotacao(@RequestBody Votacao votacao) {
-//        Votacao votacaoSalvo = votacaoService.save(votacao);
-//        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("/votacaos").path("/{id}")
-//                .buildAndExpand(votacaoSalvo.getId()).toUri();
-//        return ResponseEntity.created(uri).build();
-//    }
+    @PostMapping(path = "/votacao", consumes = "application/json")
+    public ResponseEntity<?> adicionaVotacao(@RequestBody Votacao votacao) {
+        Votacao votacaoSalvo = votacaoRepository.save(votacao);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("/votacaos").path("/{id}")
+                .buildAndExpand(votacaoSalvo.getId()).toUri();
+        logger.info("Votação criada com sucesso!");
+        return ResponseEntity.created(uri).build();
+    }
 
     // Metodo principal para votar na pauta
 //    @PostMapping(consumes = "application/json")

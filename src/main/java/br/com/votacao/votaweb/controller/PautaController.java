@@ -2,6 +2,8 @@ package br.com.votacao.votaweb.controller;
 
 import br.com.votacao.votaweb.model.Pauta;
 import br.com.votacao.votaweb.repository.PautaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +16,7 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/pautas")
 public class PautaController {
 
-//    Logger logger= (Logger) LoggerFactory.getLogger(PautaController.class);
+    private Logger logger = LoggerFactory.getLogger(PautaController.class);
 
     @Autowired
     private PautaRepository pautaRepository;
@@ -34,6 +36,7 @@ public class PautaController {
         Pauta pautaSalva = pautaRepository.save(pauta);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("/pautas").path("/{id}")
                 .buildAndExpand(pautaSalva.getId()).toUri();
+        logger.info("Pauta criada com sucesso!");
         return ResponseEntity.created(uri).build();
     }
 
