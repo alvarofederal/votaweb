@@ -11,7 +11,8 @@
     <groupId>br.com.votacao</groupId>
     <artifactId>votaweb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
+
     <name>votaweb</name>
     <description>Sistema de Votação de Pautas pelos Associados</description>
     <properties>
