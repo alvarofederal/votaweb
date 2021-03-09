@@ -1,2 +1,2 @@
 buildpacks:clear
-war:deploy target/votaweb-0.0.1-SNAPSHOT.war
+web: java -jar target/votaweb-0.0.1-SNAPSHOT.jar
