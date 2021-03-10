@@ -14,8 +14,6 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication
 public class VotawebApplication {
 
-
-
 	public static void main(String[] args) {
 		LoggerFactory.getLogger(SessaoController.class).info("Sistema inicializado com sucesso!");
 		SpringApplication.run(VotawebApplication.class, args);
