@@ -13,7 +13,7 @@ import br.com.votacao.votaweb.model.Sessao;
 public interface SessaoRepository extends JpaRepository<Sessao, Long> {
 
     @Query(value = "SELECT * FROM Sessao s ORDER BY s.id DESC LIMIT 1", nativeQuery = true)
-    Sessao findUltimoResgistro();
+    Sessao findUltimaSessao();
     
     @Query("select max(s) from Sessao s where s.terminoSessao <= :terminoSessao")
     List<Sessao> findAllWithCreationDateTimeBefore(String terminoSessao);

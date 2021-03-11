@@ -55,15 +55,13 @@ public class SessaoController {
 	@ResponseStatus(value = HttpStatus.CREATED, reason = "Sessão aberta por padrão, por 1 minuto!")
 	@PostMapping(value = "/v1/sessoes/nova-sessao")
 	public ResponseEntity<?> abrirSessaoDefault() {
-		Sessao sessao = new Sessao();
-		String stringTimestamp = VotaWebUtils.nowString();
-		sessao.setInicioSessao(stringTimestamp);
-		System.out.println(stringTimestamp);
-		sessao.setMensagemTermino(true);
 		try {
-			sessao.setTerminoSessao(VotaWebUtils.format(stringTimestamp, 1L));
-			System.out.println(VotaWebUtils.format(stringTimestamp, 1L));
-			if (sessaoService.isSessaoAberta(sessao)) {
+			if (sessaoService.isSessaoAberta()) {
+				Sessao sessao = new Sessao();
+				String stringTimestamp = VotaWebUtils.nowString();
+				sessao.setInicioSessao(stringTimestamp);
+				sessao.setTerminoSessao(VotaWebUtils.format(stringTimestamp, 1L));
+				sessao.setMensagemTermino(true);
 				sessaoService.save(sessao);
 				logger.info("Sessão aberta por padrão, por 1 minuto! Efetue seu voto como associado!");
 			} else {
@@ -80,13 +78,13 @@ public class SessaoController {
 	@ResponseStatus(value = HttpStatus.CREATED, reason = "Sessão aberta!")
 	@PostMapping(value = "/v1/sessoes/nova-sessao/{tempoSessao}")
 	public ResponseEntity<Sessao> abrirSessao(@PathVariable Long tempoSessao) {
-		Sessao sessao = new Sessao();
-		String stringTimestamp = VotaWebUtils.nowString();
-		sessao.setInicioSessao(stringTimestamp);
-		sessao.setMensagemTermino(true);
 		try {
-			sessao.setTerminoSessao(VotaWebUtils.format(stringTimestamp, tempoSessao));
-			if (sessaoService.isSessaoAberta(sessao)) {
+			if (sessaoService.isSessaoAberta()) {
+				Sessao sessao = new Sessao();
+				String stringTimestamp = VotaWebUtils.nowString();
+				sessao.setInicioSessao(stringTimestamp);
+				sessao.setMensagemTermino(true);
+				sessao.setTerminoSessao(VotaWebUtils.format(stringTimestamp, tempoSessao));
 				sessaoService.save(sessao);
 				logger.info("Sessão aberta! Efetue seu voto como Associado!");
 			} else {

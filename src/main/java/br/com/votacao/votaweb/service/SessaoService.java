@@ -7,7 +7,7 @@ import br.com.votacao.votaweb.model.Sessao;
 
 public interface SessaoService {
 
-	boolean isSessaoAberta(Sessao sessao);
+	boolean isSessaoAberta();
 
 	Optional<Sessao> findById(long id);
 

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.votacao.votaweb.exception.SessaoExistenteException;
 import br.com.votacao.votaweb.model.Associado;
 import br.com.votacao.votaweb.model.Pauta;
 import br.com.votacao.votaweb.model.Sessao;
@@ -59,19 +60,40 @@ public class VotacaoController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(path = "/v1/votacoes/sessao/{sessaoId}/pauta/{pautaId}/associado/{associadoId}/votar/{voto}")
-    public ResponseEntity<Votacao> votar(@PathVariable Long sessaoId,
-							    		@PathVariable Long pautaId,
-							    		@PathVariable Long associadoId,
-							    		@PathVariable Long voto) {
-    	Optional<Sessao> sessaoOptional = sessaoService.findById(sessaoId);
+    @PostMapping(path = "/v1/votacoes/pauta/{pautaId}/associado/{associadoId}/votar/{voto}")
+    public ResponseEntity<Votacao> votar(@PathVariable Long pautaId,
+							    		 @PathVariable Long associadoId,
+							    		 @PathVariable Long voto) {
+    	Votacao votacaoSalvo = new Votacao(); 
+    	Votacao votacao = new Votacao();
+    	Sessao sessaoBanco = sessaoService.ultimaSessao();
+
+    	// Metodo para recuperar a pauta em que deseja efetuar o voto
     	Optional<Pauta> pautaOptional = pautaService.findById(pautaId);
+    	votacao.setPauta(pautaOptional.get());
+
+    	// Metodo para recuperar a associado que deseja efetuar o voto na pauta
     	Optional<Associado> associadoOptional = associadoService.findById(associadoId);
-		Sessao sessaoBanco = sessaoService.ultimaSessao();
-		Votacao votacao = new Votacao();
-		votacao.setSessao(sessaoOptional.get());
-		votacao.setPauta(pautaOptional.get());
 		votacao.setAssociado(associadoOptional.get());
+		
+		// Metodo responsável por validar os votos selecionados pelos Associados
+		validaVotoAssociadoPauta(voto, votacao);
+		
+		// Verifica a condição da sessão(Aberta ou Fechada), pava o voto de um associado 
+		if (sessaoService.isSessaoAberta()) {
+			votacaoSalvo = votacaoService.save(votacao);
+		} else {
+			throw new SessaoExistenteException(
+					"Não pode efetuar esse voto nessa pauta, pois não existe uma sessão aberta!");
+		}
+		
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("/votacoes").path("/{id}")
+                .buildAndExpand(votacaoSalvo.getId()).toUri();
+        logger.info("Votação efetuada com sucesso!");
+        return ResponseEntity.created(uri).build();
+    }
+
+	private void validaVotoAssociadoPauta(Long voto, Votacao votacao) {
 		if (voto == 1) {
 			votacao.setVotoSim(voto);
 			votacao.setVotoNao(0L);
@@ -79,12 +101,7 @@ public class VotacaoController {
 			votacao.setVotoNao(voto);
 			votacao.setVotoSim(0L);
 		}
-        Votacao votacaoSalvo = votacaoService.save(votacao);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("/votacoes").path("/{id}")
-                .buildAndExpand(votacaoSalvo.getId()).toUri();
-        logger.info("Votação efetuada com sucesso!");
-        return ResponseEntity.created(uri).build();
-    }
+	}
 
     // Metodo principal para votar na pauta
 //    @PostMapping(consumes = "application/json")

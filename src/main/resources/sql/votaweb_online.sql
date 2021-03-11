@@ -1,73 +1,68 @@
 # ************************************************************
-# Base de Dados: a97k3bvfc0ogcdxv
+# Base de Dados: heroku_96f23168d824f01
 # Tempo de Geração: 2021-03-06
 # ************************************************************
-# ************************************************************
-# Base de Dados: a97k3bvfc0ogcdxv
-# Tempo de Geração: 2021-03-06
-# ************************************************************
-
 
 # ************************************************************
 # *************************DROPS******************************
 # ************************************************************
-drop table `a97k3bvfc0ogcdxv`.`votacao`;
-drop table `a97k3bvfc0ogcdxv`.`sessao`;
-drop table `a97k3bvfc0ogcdxv`.`pauta`;
-drop table `a97k3bvfc0ogcdxv`.`associado`;
+drop table `heroku_96f23168d824f01`.`votacao`;
+drop table `heroku_96f23168d824f01`.`sessao`;
+drop table `heroku_96f23168d824f01`.`pauta`;
+drop table `heroku_96f23168d824f01`.`associado`;
 
 # ************************************************************
 # *************************PAUTA******************************
 # ************************************************************
-CREATE TABLE `a97k3bvfc0ogcdxv`.`pauta`
+CREATE TABLE `heroku_96f23168d824f01`.`pauta`
 (
     `id`         INT NOT NULL,
     `nome_pauta` VARCHAR(255) NULL,
     PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE `a97k3bvfc0ogcdxv`.`pauta`
+ALTER TABLE `heroku_96f23168d824f01`.`pauta`
     CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
     ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
 
-INSERT INTO `a97k3bvfc0ogcdxv`.`pauta` (`id`, `nome_pauta`) VALUES ('1', 'Lava Jato');
-INSERT INTO `a97k3bvfc0ogcdxv`.`pauta` (`id`, `nome_pauta`) VALUES ('2', 'Operação Zelotes');
-INSERT INTO `a97k3bvfc0ogcdxv`.`pauta` (`id`, `nome_pauta`) VALUES ('3', 'Operação Acrônimo');
-INSERT INTO `a97k3bvfc0ogcdxv`.`pauta` (`id`, `nome_pauta`) VALUES ('4', 'Operação Castelo de Areia');
-INSERT INTO `a97k3bvfc0ogcdxv`.`pauta` (`id`, `nome_pauta`) VALUES ('5', 'Operação Furacão (Hurricane)');
-INSERT INTO `a97k3bvfc0ogcdxv`.`pauta` (`id`, `nome_pauta`) VALUES ('6', 'Operação Shogun');
-INSERT INTO `a97k3bvfc0ogcdxv`.`pauta` (`id`, `nome_pauta`) VALUES ('7', 'Operação Cevada');
-INSERT INTO `a97k3bvfc0ogcdxv`.`pauta` (`id`, `nome_pauta`) VALUES ('8', 'Operação Chacal');
+INSERT INTO `heroku_96f23168d824f01`.`pauta` (`id`, `nome_pauta`) VALUES ('1', 'Lava Jato');
+INSERT INTO `heroku_96f23168d824f01`.`pauta` (`id`, `nome_pauta`) VALUES ('2', 'Operação Zelotes');
+INSERT INTO `heroku_96f23168d824f01`.`pauta` (`id`, `nome_pauta`) VALUES ('3', 'Operação Acrônimo');
+INSERT INTO `heroku_96f23168d824f01`.`pauta` (`id`, `nome_pauta`) VALUES ('4', 'Operação Castelo de Areia');
+INSERT INTO `heroku_96f23168d824f01`.`pauta` (`id`, `nome_pauta`) VALUES ('5', 'Operação Furacão (Hurricane)');
+INSERT INTO `heroku_96f23168d824f01`.`pauta` (`id`, `nome_pauta`) VALUES ('6', 'Operação Shogun');
+INSERT INTO `heroku_96f23168d824f01`.`pauta` (`id`, `nome_pauta`) VALUES ('7', 'Operação Cevada');
+INSERT INTO `heroku_96f23168d824f01`.`pauta` (`id`, `nome_pauta`) VALUES ('8', 'Operação Chacal');
 
 # ************************************************************
 # *************************ASSOCIADO**************************
 # ************************************************************
-CREATE TABLE `a97k3bvfc0ogcdxv`.`associado`
+CREATE TABLE `heroku_96f23168d824f01`.`associado`
 (
     `id`             int(11) NOT NULL,
     `nome_associado` varchar(255) NOT NULL,
     PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE `a97k3bvfc0ogcdxv`.`associado`
+ALTER TABLE `heroku_96f23168d824f01`.`associado`
     CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
     ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
 
-INSERT INTO `a97k3bvfc0ogcdxv`.`associado` (`id`, `nome_associado`) VALUES ('1', 'Luciano Huck');
-INSERT INTO `a97k3bvfc0ogcdxv`.`associado` (`id`, `nome_associado`) VALUES ('2', 'Fausto Silva');
-INSERT INTO `a97k3bvfc0ogcdxv`.`associado` (`id`, `nome_associado`) VALUES ('3', 'Xuxa');
-INSERT INTO `a97k3bvfc0ogcdxv`.`associado` (`id`, `nome_associado`) VALUES ('4', 'Lula');
-INSERT INTO `a97k3bvfc0ogcdxv`.`associado` (`id`, `nome_associado`) VALUES ('5', 'Bolsonaro');
-INSERT INTO `a97k3bvfc0ogcdxv`.`associado` (`id`, `nome_associado`) VALUES ('6', 'FHC');
-INSERT INTO `a97k3bvfc0ogcdxv`.`associado` (`id`, `nome_associado`) VALUES ('7', 'Collor de Mello');
-INSERT INTO `a97k3bvfc0ogcdxv`.`associado` (`id`, `nome_associado`) VALUES ('8', 'Sarney');
-INSERT INTO `a97k3bvfc0ogcdxv`.`associado` (`id`, `nome_associado`) VALUES ('9', 'Temer');
-INSERT INTO `a97k3bvfc0ogcdxv`.`associado` (`id`, `nome_associado`) VALUES ('10', 'Dilminha');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('1', 'Luciano Huck');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('2', 'Fausto Silva');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('3', 'Xuxa');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('4', 'Lula');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('5', 'Bolsonaro');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('6', 'FHC');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('7', 'Collor de Mello');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('8', 'Sarney');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('9', 'Temer');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('10', 'Dilminha');
 
 # ************************************************************
 # *************************SESSAO*****************************
 # ************************************************************
-CREATE TABLE `a97k3bvfc0ogcdxv`.`sessao`
+CREATE TABLE `heroku_96f23168d824f01`.`sessao`
 (
     `id`             int(11) NOT NULL,
     `inicio_sessao` datetime NOT NULL,
@@ -76,16 +71,16 @@ CREATE TABLE `a97k3bvfc0ogcdxv`.`sessao`
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE `a97k3bvfc0ogcdxv`.`sessao`
+ALTER TABLE `heroku_96f23168d824f01`.`sessao`
     CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
     ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
 
-INSERT INTO `a97k3bvfc0ogcdxv`.`sessao` (`id`, `inicio_sessao`, `termino_sessao`, `mensagem_termino`) VALUES ('1', '2018-10-21 12:24:51', '2018-10-21 12:24:51', 'true');
+INSERT INTO `heroku_96f23168d824f01`.`sessao` (`id`, `inicio_sessao`, `termino_sessao`, `mensagem_termino`) VALUES ('1', '2018-10-21 12:24:51', '2018-10-21 12:24:51', 'true');
 
 # ************************************************************
 # *************************VOTACAO****************************
 # ************************************************************
-CREATE TABLE `a97k3bvfc0ogcdxv`.`votacao`
+CREATE TABLE `heroku_96f23168d824f01`.`votacao`
 (
     `id`           int(11) NOT NULL ,
     `id_associado` int(11) DEFAULT NULL,
@@ -102,17 +97,17 @@ CREATE TABLE `a97k3bvfc0ogcdxv`.`votacao`
     CONSTRAINT `id_associado_sessao` FOREIGN KEY (`id_sessao`) REFERENCES `sessao` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE `a97k3bvfc0ogcdxv`.`votacao`
+ALTER TABLE `heroku_96f23168d824f01`.`votacao`
     CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
     ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
 
-INSERT INTO `a97k3bvfc0ogcdxv`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('9', '5', '2', '1', '1', '0');
-INSERT INTO `a97k3bvfc0ogcdxv`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('1', '1', '1', '1', '1', '0');
-INSERT INTO `a97k3bvfc0ogcdxv`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('2', '1', '1', '1', '1', '0');
-INSERT INTO `a97k3bvfc0ogcdxv`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('3', '2', '1', '1', '1', '0');
-INSERT INTO `a97k3bvfc0ogcdxv`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('4', '2', '1', '1', '1', '0');
-INSERT INTO `a97k3bvfc0ogcdxv`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('5', '3', '1', '1', '1', '0');
-INSERT INTO `a97k3bvfc0ogcdxv`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('6', '3', '1', '1', '1', '0');
-INSERT INTO `a97k3bvfc0ogcdxv`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('7', '4', '1', '1', '1', '0');
-INSERT INTO `a97k3bvfc0ogcdxv`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('8', '4', '1', '1', '1', '0');
+INSERT INTO `heroku_96f23168d824f01`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('9', '5', '2', '1', '1', '0');
+INSERT INTO `heroku_96f23168d824f01`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('1', '1', '1', '1', '1', '0');
+INSERT INTO `heroku_96f23168d824f01`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('2', '1', '1', '1', '1', '0');
+INSERT INTO `heroku_96f23168d824f01`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('3', '2', '1', '1', '1', '0');
+INSERT INTO `heroku_96f23168d824f01`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('4', '2', '1', '1', '1', '0');
+INSERT INTO `heroku_96f23168d824f01`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('5', '3', '1', '1', '1', '0');
+INSERT INTO `heroku_96f23168d824f01`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('6', '3', '1', '1', '1', '0');
+INSERT INTO `heroku_96f23168d824f01`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('7', '4', '1', '1', '1', '0');
+INSERT INTO `heroku_96f23168d824f01`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('8', '4', '1', '1', '1', '0');
 

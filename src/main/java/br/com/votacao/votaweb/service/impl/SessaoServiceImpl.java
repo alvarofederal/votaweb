@@ -18,24 +18,21 @@ public class SessaoServiceImpl implements SessaoService {
 	SessaoRepository sessaoRepository;
 
 	public Sessao ultimaSessao() {
-		return sessaoRepository.findUltimoResgistro();
+		return sessaoRepository.findUltimaSessao();
 	}
-	
-	public boolean isSessaoAberta(Sessao sessao) {
-		if (sessao != null) {
-			Sessao sessaoBanco = ultimaSessao();
-			if (sessaoBanco != null) {
-				if (VotaWebUtils.convertStringToTimestamp(sessaoBanco.getTerminoSessao())
-						.before(VotaWebUtils.convertStringToTimestamp(VotaWebUtils.nowString()))) {
-					return true;
-				} else {
-					return false;
-				}
-			} else {
+
+	public boolean isSessaoAberta() {
+		Sessao sessaoBanco = ultimaSessao();
+		if (sessaoBanco != null) {
+			if (VotaWebUtils.convertStringToTimestamp(sessaoBanco.getTerminoSessao())
+					.before(VotaWebUtils.convertStringToTimestamp(VotaWebUtils.nowString()))) {
 				return true;
+			} else {
+				return false;
 			}
+		} else {
+			return true;
 		}
-		return true;
 	}
 
 	@Override
