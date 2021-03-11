@@ -30,14 +30,13 @@ public class VotaWebUtils {
 		return (value != null) ? value.format(dateTimeFormatter) : null;
 	}
 
-	public static String format(String sourceDate, Long hours) throws ParseException {
+	public static String format(String sourceDate, Long minuto) throws ParseException {
 		TimeZone tz = TimeZone.getTimeZone("America/Sao_Paulo");
 		TimeZone.setDefault(tz);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		Calendar calendar = Calendar.getInstance();
+		Calendar calendar = Calendar.getInstance(tz);
 		calendar.setTime(sdf.parse(sourceDate));
-		calendar.add(Calendar.MINUTE, converLongToInt(hours));
-		calendar = GregorianCalendar.getInstance(tz);
+		calendar.add(Calendar.MINUTE, converLongToInt(minuto));
 		return sdf.format(calendar.getTime());
 	}
 

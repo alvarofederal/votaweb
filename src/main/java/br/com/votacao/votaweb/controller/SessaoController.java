@@ -58,9 +58,11 @@ public class SessaoController {
 		Sessao sessao = new Sessao();
 		String stringTimestamp = VotaWebUtils.nowString();
 		sessao.setInicioSessao(stringTimestamp);
+		System.out.println(stringTimestamp);
 		sessao.setMensagemTermino(true);
 		try {
 			sessao.setTerminoSessao(VotaWebUtils.format(stringTimestamp, 1L));
+			System.out.println(VotaWebUtils.format(stringTimestamp, 1L));
 			if (sessaoService.isSessaoAberta(sessao)) {
 				sessaoService.save(sessao);
 				logger.info("Sessão aberta por padrão, por 1 minuto! Efetue seu voto como associado!");
