@@ -12,4 +12,6 @@ public interface VotacaoService {
 	Votacao save(Votacao votacao);
 
 	Optional<List<Votacao>> findAll();
+
+	Votacao verificarVotoAssociado(Votacao votacao);
 }

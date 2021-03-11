@@ -9,6 +9,8 @@ public interface SessaoService {
 
 	boolean isSessaoAberta();
 
+	boolean isSessaoAbertaParaVotacao();
+
 	Optional<Sessao> findById(long id);
 
 	void save(Sessao sessao);
@@ -16,5 +18,7 @@ public interface SessaoService {
 	Optional<List<Sessao>> findAll();
 
 	Sessao ultimaSessao();
+
+
 
 }

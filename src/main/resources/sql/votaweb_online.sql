@@ -41,6 +41,7 @@ CREATE TABLE `heroku_96f23168d824f01`.`associado`
 (
     `id`             int(11) NOT NULL,
     `nome_associado` varchar(255) NOT NULL,
+	`cpf` varchar(20) NOT NULL,
     PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -48,16 +49,16 @@ ALTER TABLE `heroku_96f23168d824f01`.`associado`
     CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
     ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
 
-INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('1', 'Luciano Huck');
-INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('2', 'Fausto Silva');
-INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('3', 'Xuxa');
-INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('4', 'Lula');
-INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('5', 'Bolsonaro');
-INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('6', 'FHC');
-INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('7', 'Collor de Mello');
-INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('8', 'Sarney');
-INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('9', 'Temer');
-INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`) VALUES ('10', 'Dilminha');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('1', 'Luciano Huck', '12345678912');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('2', 'Fausto Silva', '52994814030');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('3', 'Xuxa', '12345678912');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('4', 'Lula', '77535051065');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('5', 'Bolsonaro', '12345678912');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('6', 'FHC', '12661323090');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('7', 'Collor de Mello', '06207177002');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('8', 'Sarney', '45168803008');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('9', 'Temer', '61115038044');
+INSERT INTO `heroku_96f23168d824f01`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('10', 'Dilminha', '12345678912');
 
 # ************************************************************
 # *************************SESSAO*****************************
@@ -75,7 +76,7 @@ ALTER TABLE `heroku_96f23168d824f01`.`sessao`
     CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
     ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
 
-INSERT INTO `heroku_96f23168d824f01`.`sessao` (`id`, `inicio_sessao`, `termino_sessao`, `mensagem_termino`) VALUES ('1', '2018-10-21 12:24:51', '2018-10-21 12:24:51', 'true');
+INSERT INTO `heroku_96f23168d824f01`.`sessao` (`id`, `inicio_sessao`, `termino_sessao`, `mensagem_termino`) VALUES ('1', '2018-10-21 12:24:51', '2018-10-21 12:25:51', 'true');
 
 # ************************************************************
 # *************************VOTACAO****************************

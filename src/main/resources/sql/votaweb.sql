@@ -42,6 +42,7 @@ CREATE TABLE `votaweb_db`.`associado`
 (
     `id`             int(11) NOT NULL,
     `nome_associado` varchar(255) NOT NULL,
+	`cpf` varchar(20) NOT NULL,
     PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -49,16 +50,16 @@ ALTER TABLE `votaweb_db`.`associado`
     CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
     ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
 
-INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`) VALUES ('1', 'Luciano Huck');
-INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`) VALUES ('2', 'Fausto Silva');
-INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`) VALUES ('3', 'Xuxa');
-INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`) VALUES ('4', 'Lula');
-INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`) VALUES ('5', 'Bolsonaro');
-INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`) VALUES ('6', 'FHC');
-INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`) VALUES ('7', 'Collor de Mello');
-INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`) VALUES ('8', 'Sarney');
-INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`) VALUES ('9', 'Temer');
-INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`) VALUES ('10', 'Dilminha');
+INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('1', 'Luciano Huck', '12345678912');
+INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('2', 'Fausto Silva', '52994814030');
+INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('3', 'Xuxa', '12345678912');
+INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('4', 'Lula', '77535051065');
+INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('5', 'Bolsonaro', '12345678912');
+INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('6', 'FHC', '12661323090');
+INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('7', 'Collor de Mello', '06207177002');
+INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('8', 'Sarney', '45168803008');
+INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('9', 'Temer', '61115038044');
+INSERT INTO `votaweb_db`.`associado` (`id`, `nome_associado`, `cpf`) VALUES ('10', 'Dilminha', '12345678912');
 
 # ************************************************************
 # *************************SESSAO*****************************

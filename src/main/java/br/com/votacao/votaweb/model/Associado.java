@@ -21,6 +21,6 @@ public class Associado implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomeAssociado;
-    private Integer cpf;
+    private String cpf;
     
 }

@@ -22,7 +22,8 @@ public class SessaoServiceImpl implements SessaoService {
 	}
 
 	public boolean isSessaoAberta() {
-		Sessao sessaoBanco = ultimaSessao();
+		Sessao sessaoBanco = new Sessao();
+		sessaoBanco = ultimaSessao();
 		if (sessaoBanco != null) {
 			if (VotaWebUtils.convertStringToTimestamp(sessaoBanco.getTerminoSessao())
 					.before(VotaWebUtils.convertStringToTimestamp(VotaWebUtils.nowString()))) {
@@ -34,6 +35,33 @@ public class SessaoServiceImpl implements SessaoService {
 			return true;
 		}
 	}
+
+	public boolean isSessaoAbertaParaVotacao() {
+		Sessao sessaoBanco = new Sessao();
+		sessaoBanco = ultimaSessao();
+		if (sessaoBanco != null 
+				&& VotaWebUtils.convertStringToTimestamp(VotaWebUtils.nowString())
+				.before(
+				VotaWebUtils.convertStringToTimestamp(sessaoBanco.getTerminoSessao()))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+//	public boolean isSessaoExpirada() {
+//		Sessao sessaoBanco = ultimaSessao();
+//		if (sessaoBanco != null) {
+//			if (VotaWebUtils.convertStringToTimestamp(sessaoBanco.getTerminoSessao())
+//					.after(VotaWebUtils.convertStringToTimestamp(VotaWebUtils.nowString()))) {
+//				return true;
+//			} else {
+//				return false;
+//			}
+//		} else {
+//			return true;
+//		}
+//	}
 
 	@Override
 	public Optional<Sessao> findById(long id) {
