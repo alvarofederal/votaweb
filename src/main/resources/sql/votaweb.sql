@@ -3,7 +3,6 @@
 # Tempo de Geração: 2021-03-06
 # ************************************************************
 
-
 # ************************************************************
 # *************************DROPS******************************
 # ************************************************************
@@ -77,8 +76,6 @@ ALTER TABLE `votaweb_db`.`sessao`
     CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
     ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
 
-INSERT INTO `votaweb_db`.`sessao` (`id`, `inicio_sessao`, `termino_sessao`, `mensagem_termino`) VALUES ('1', '2018-10-21 12:24:51', '2018-10-21 12:24:51', 'true');
-
 # ************************************************************
 # *************************VOTACAO****************************
 # ************************************************************
@@ -87,9 +84,8 @@ CREATE TABLE `votaweb_db`.`votacao`
     `id`           int(11) NOT NULL ,
     `id_associado` int(11) DEFAULT NULL,
     `id_pauta`     int(11) DEFAULT NULL,
-    `id_sessao`     int(11) DEFAULT NULL,
-    `voto_sim`     int(11) DEFAULT NULL,
-    `voto_nao`     int(11) DEFAULT NULL,
+    `id_sessao`    int(11) DEFAULT NULL,
+    `voto`         int(11) DEFAULT NULL,
     PRIMARY KEY (`id`),
     KEY            `associado` (`id_associado`),
     KEY            `pauta` (`id_pauta`),
@@ -103,13 +99,20 @@ ALTER TABLE `votaweb_db`.`votacao`
     CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
     ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
 
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('9', '5', '2', '1', '1', '0');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('1', '1', '1', '1', '1', '0');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('2', '1', '1', '1', '1', '0');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('3', '2', '1', '1', '1', '0');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('4', '2', '1', '1', '1', '0');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('5', '3', '1', '1', '1', '0');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('6', '3', '1', '1', '1', '0');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('7', '4', '1', '1', '1', '0');
-INSERT INTO `votaweb_db`.`votacao` (`id`, `id_associado`, `id_pauta`, `id_sessao`, `voto_sim`, `voto_nao`) VALUES ('8', '4', '1', '1', '1', '0');
+
+# ************************************************************
+# ***************RESULTADO VOTACAO****************************
+# ************************************************************
+CREATE TABLE `votaweb_db`.`resultado_votacao`
+(
+    `id`         INT NOT NULL,
+    `total`      int(11) DEFAULT NULL,
+    `voto_sim`   int(11) DEFAULT NULL,
+    `voto_nao`   int(11) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `votaweb_db`.`resultado_votacao`
+    CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
+    ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
 

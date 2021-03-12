@@ -7,9 +7,12 @@ import br.com.votacao.votaweb.model.Associado;
 
 public interface AssociadoService {
 	
-	Optional<Associado> findById(long id);
+	public Optional<Associado> findById(long id);
 
-	Associado save(Associado associado);
+	public Associado save(Associado associado);
 
-	Optional<List<Associado>> findAll();
+	public List<Associado> findAll();
+
+	public Associado findAssociadoCPF(String cpf);
+
 }

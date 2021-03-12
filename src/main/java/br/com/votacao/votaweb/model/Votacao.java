@@ -35,8 +35,6 @@ public class Votacao implements Serializable {
 	@JoinColumn(name = "id_sessao")
 	private Sessao sessao;
 
-	private Long votoSim;
-
-	private Long votoNao;
+	private Long voto;
 
 }

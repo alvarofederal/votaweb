@@ -27,8 +27,14 @@ public class AssociadoServiceImpl implements AssociadoService {
 		}
 
 		@Override
-		public Optional<List<Associado>> findAll() {
-			return Optional.of(associadoRepository.findAll());
+		public List<Associado> findAll() {
+			return associadoRepository.findAll();
 		}
+
+		@Override
+		public Associado findAssociadoCPF(String cpf) {
+			return associadoRepository.findAssociadoCPF(cpf);
+		}
+
 
 }

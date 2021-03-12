@@ -66,7 +66,7 @@ public class VotacaoController {
 
 		buscaPautaValida(pautaId, votacao);
 		buscaAssociadoValido(associadoId, votacao);
-		validaVotoAssociadoPauta(voto, votacao);
+		validaVinculaVoto(voto, votacao);
 		sessaoBanco = sessaoService.ultimaSessao();
 		if (sessaoService.isSessaoAbertaParaVotacao(sessaoBanco)) {
 			this.votoEfetuado = votacaoService.verificarVotoAssociado(votacao);
@@ -100,6 +100,9 @@ public class VotacaoController {
 	// Metodo para recuperar a associado que deseja efetuar o voto na pauta
 	private void buscaAssociadoValido(Long associadoId, Votacao votacao) {
 		Optional<Associado> associadoOptional = associadoService.findById(associadoId);
+		if (associadoOptional == null) {
+			new ResponseEntity<>("Associado não encontrado!", new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
+		}
 		if (validaCPFService.verificaIntegraçãoCPF(associadoOptional.get().getCpf()))
 			new ResponseEntity<>("CPF do associado está inválido!", new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
 		if (associadoOptional != null) {
@@ -107,13 +110,7 @@ public class VotacaoController {
 		}
 	}
 
-	private void validaVotoAssociadoPauta(Long voto, Votacao votacao) {
-		if (voto == 1) {
-			votacao.setVotoSim(voto);
-			votacao.setVotoNao(0L);
-		} else {
-			votacao.setVotoNao(voto);
-			votacao.setVotoSim(0L);
-		}
+	private void validaVinculaVoto(Long voto, Votacao votacao) {
+		votacao.setVoto(voto);
 	}
 }

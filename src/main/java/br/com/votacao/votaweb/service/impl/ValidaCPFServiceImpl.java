@@ -29,9 +29,9 @@ public class ValidaCPFServiceImpl implements ValidaCPFService {
 	private final Environment env = null;
 
 	@Override
-	public Boolean verificaIntegraçãoCPF(String CPF) {
+	public boolean verificaIntegraçãoCPF(String cpf) {
 		try {
-			String url = env.getProperty("cpf.validacao.integracao") + CPF;
+			String url = env.getProperty("cpf.validacao.integracao") + cpf;
 			ResponseEntity<String> response = restTemplate.getForEntity(url, String.class); // 3
 			return response.getBody().equals(ABLE_TO_VOTE);
 		} catch (HttpStatusCodeException ex) {
