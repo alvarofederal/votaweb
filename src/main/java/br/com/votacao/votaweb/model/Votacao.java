@@ -1,10 +1,6 @@
 package br.com.votacao.votaweb.model;
 
 import java.io.Serializable;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import br.com.votacao.votaweb.utils.VotaWebUtils;
 import lombok.Data;
 
 @Entity

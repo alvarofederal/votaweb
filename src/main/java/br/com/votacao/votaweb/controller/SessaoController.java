@@ -4,19 +4,16 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.votacao.votaweb.exception.SessaoExistenteException;
 import br.com.votacao.votaweb.model.Sessao;
 import br.com.votacao.votaweb.service.SessaoService;
 import br.com.votacao.votaweb.utils.VotaWebUtils;
@@ -26,8 +23,6 @@ import io.swagger.annotations.Api;
 @Api(value = "sessao")
 @RequestMapping(value = "/api", produces = "application/json")
 public class SessaoController {
-
-	private Logger logger = LoggerFactory.getLogger(SessaoController.class);
 
 	@Autowired
 	private SessaoService sessaoService;
@@ -52,7 +47,6 @@ public class SessaoController {
 		return ResponseEntity.ok().body(sessaoService.findById(id).get());
 	}
 
-	@ResponseStatus(value = HttpStatus.CREATED, reason = "Sessão aberta por padrão, por 1 minuto!")
 	@PostMapping(value = "/v1/sessoes/nova-sessao")
 	public ResponseEntity<?> abrirSessaoDefault() {
 		try {
@@ -63,10 +57,11 @@ public class SessaoController {
 				sessao.setTerminoSessao(VotaWebUtils.format(stringTimestamp, 1L));
 				sessao.setMensagemTermino(true);
 				sessaoService.save(sessao);
-				logger.info("Sessão aberta por padrão, por 1 minuto! Efetue seu voto como associado!");
+				return new ResponseEntity<>("Sessão aberta por padrão, por 1 minuto! Efetue seu voto como associado!",
+						new HttpHeaders(), HttpStatus.CREATED);
 			} else {
-				throw new SessaoExistenteException(
-						"Existe uma sessão aberta! Aproveite para efetuar seu voto como associado!");
+				return new ResponseEntity<>("Existe uma sessão aberta! Aproveite para efetuar seu voto como associado!",
+						new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -75,9 +70,8 @@ public class SessaoController {
 	}
 
 	// Abrindo sessão, com tempo especificado pelo usuário, para votação de pauta
-	@ResponseStatus(value = HttpStatus.CREATED, reason = "Sessão aberta!")
 	@PostMapping(value = "/v1/sessoes/nova-sessao/{tempoSessao}")
-	public ResponseEntity<Sessao> abrirSessao(@PathVariable Long tempoSessao) {
+	public ResponseEntity<?> abrirSessao(@PathVariable Long tempoSessao) {
 		try {
 			if (sessaoService.isSessaoAberta()) {
 				Sessao sessao = new Sessao();
@@ -86,10 +80,11 @@ public class SessaoController {
 				sessao.setMensagemTermino(true);
 				sessao.setTerminoSessao(VotaWebUtils.format(stringTimestamp, tempoSessao));
 				sessaoService.save(sessao);
-				logger.info("Sessão aberta! Efetue seu voto como Associado!");
+				return new ResponseEntity<>("Sessão aberta! Efetue seu voto como Associado!", new HttpHeaders(),
+						HttpStatus.CREATED);
 			} else {
-				throw new SessaoExistenteException(
-						"Existe uma sessão aberta! Aproveite para efetuar seu voto como associado!");
+				return new ResponseEntity<>("Existe uma sessão aberta! Aproveite para efetuar seu voto como associado!",
+						new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();

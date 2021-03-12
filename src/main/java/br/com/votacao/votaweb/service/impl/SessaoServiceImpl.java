@@ -49,20 +49,6 @@ public class SessaoServiceImpl implements SessaoService {
 		}
 	}
 
-//	public boolean isSessaoExpirada() {
-//		Sessao sessaoBanco = ultimaSessao();
-//		if (sessaoBanco != null) {
-//			if (VotaWebUtils.convertStringToTimestamp(sessaoBanco.getTerminoSessao())
-//					.after(VotaWebUtils.convertStringToTimestamp(VotaWebUtils.nowString()))) {
-//				return true;
-//			} else {
-//				return false;
-//			}
-//		} else {
-//			return true;
-//		}
-//	}
-
 	@Override
 	public Optional<Sessao> findById(long id) {
 		return sessaoRepository.findById(id);

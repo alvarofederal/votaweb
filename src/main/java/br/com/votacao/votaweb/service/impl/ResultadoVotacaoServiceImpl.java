@@ -1,5 +1,6 @@
 package br.com.votacao.votaweb.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class ResultadoVotacaoServiceImpl implements ResultadoVotacaoService {
 	VotacaoRepository votacaoRepository;
 
 	@Override
-	public Votacao resultadoVotacao(Long id) {
+	public Optional<List<Votacao>>  resultadoVotacao(Long id) {
 		return null;
 	}
 
