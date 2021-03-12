@@ -36,9 +36,7 @@ public class SessaoServiceImpl implements SessaoService {
 		}
 	}
 
-	public boolean isSessaoAbertaParaVotacao() {
-		Sessao sessaoBanco = new Sessao();
-		sessaoBanco = ultimaSessao();
+	public boolean isSessaoAbertaParaVotacao(Sessao sessaoBanco) {
 		if (sessaoBanco != null 
 				&& VotaWebUtils.convertStringToTimestamp(VotaWebUtils.nowString())
 				.before(

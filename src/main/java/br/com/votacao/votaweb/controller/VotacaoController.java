@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.votacao.votaweb.model.Associado;
 import br.com.votacao.votaweb.model.Pauta;
+import br.com.votacao.votaweb.model.Sessao;
 import br.com.votacao.votaweb.model.Votacao;
 import br.com.votacao.votaweb.service.AssociadoService;
 import br.com.votacao.votaweb.service.PautaService;
@@ -61,12 +62,16 @@ public class VotacaoController {
 	public ResponseEntity<String> votar(@PathVariable Long pautaId, @PathVariable Long associadoId,
 			@PathVariable Long voto) {
 		Votacao votacao = new Votacao();
+		Sessao sessaoBanco = new Sessao();
 
 		buscaPautaValida(pautaId, votacao);
 		buscaAssociadoValido(associadoId, votacao);
 		validaVotoAssociadoPauta(voto, votacao);
-		if (sessaoService.isSessaoAbertaParaVotacao()) {
+		sessaoBanco = sessaoService.ultimaSessao();
+		if (sessaoService.isSessaoAbertaParaVotacao(sessaoBanco)) {
 			this.votoEfetuado = votacaoService.verificarVotoAssociado(votacao);
+			// Vincula a ultima sessão aberta a votação já validada
+			vinculaUltimaSessaoVotacao(votacao, sessaoBanco);
 			if (votoEfetuado == null) {
 				votacaoService.save(votacao);
 				return new ResponseEntity<>("Voto efetuado com sucesso!", new HttpHeaders(), HttpStatus.CREATED);
@@ -78,6 +83,10 @@ public class VotacaoController {
 			return new ResponseEntity<>("Não pode efetuar voto nessa pauta! Não existe uma sessão aberta!",
 					new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
 		}
+	}
+
+	private void vinculaUltimaSessaoVotacao(Votacao votacao, Sessao sessaoBanco) {
+		votacao.setSessao(sessaoBanco);
 	}
 
 	// Metodo para recuperar a pauta em que deseja efetuar o voto
@@ -92,8 +101,7 @@ public class VotacaoController {
 	private void buscaAssociadoValido(Long associadoId, Votacao votacao) {
 		Optional<Associado> associadoOptional = associadoService.findById(associadoId);
 		if (validaCPFService.verificaIntegraçãoCPF(associadoOptional.get().getCpf()))
-			new ResponseEntity<>("CPF do associado está inválido!",
-					new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
+			new ResponseEntity<>("CPF do associado está inválido!", new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
 		if (associadoOptional != null) {
 			votacao.setAssociado(associadoOptional.get());
 		}

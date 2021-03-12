@@ -9,7 +9,7 @@ public interface SessaoService {
 
 	boolean isSessaoAberta();
 
-	boolean isSessaoAbertaParaVotacao();
+	boolean isSessaoAbertaParaVotacao(Sessao sessaoBanco);
 
 	Optional<Sessao> findById(long id);
 

@@ -3,12 +3,12 @@ package br.com.votacao.votaweb.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 import br.com.votacao.votaweb.service.ValidaCPFService;
 
@@ -36,9 +36,9 @@ public class ValidaCPFServiceImpl implements ValidaCPFService {
 			return response.getBody().equals(ABLE_TO_VOTE);
 		} catch (HttpStatusCodeException ex) {
 			if (ex.getStatusCode() == HttpStatus.NOT_FOUND)
-				new ResponseEntity<>("CPF do associado não encontrado!",
-						new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
-			return false;
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF do associado inválido!");
+			throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,
+					"Problemas com a integração, Por favor, procuprar o administrador!");
 		}
 	}
 }

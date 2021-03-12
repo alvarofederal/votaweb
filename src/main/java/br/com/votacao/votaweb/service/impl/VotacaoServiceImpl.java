@@ -34,7 +34,8 @@ public class VotacaoServiceImpl implements VotacaoService {
 	@Override
 	public Votacao verificarVotoAssociado(Votacao votacao) {
 		Votacao votacaoBanco = new Votacao();
-		votacaoBanco = votacaoRepository.verificarVotoAssociado(votacao.getAssociado().getId(),
+		votacaoBanco = votacaoRepository.verificarVotoAssociado(
+				votacao.getAssociado().getId(),
 				votacao.getPauta().getId());
 		return votacaoBanco;
 	}
