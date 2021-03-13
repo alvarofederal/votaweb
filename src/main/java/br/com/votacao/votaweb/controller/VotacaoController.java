@@ -60,20 +60,43 @@ public class VotacaoController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping(path = "/v1/votacoes/pauta/{pautaId}/associado/{associadoId}/votar/{voto}")
 	public ResponseEntity<String> votar(@PathVariable int pautaId, @PathVariable int associadoId,
-			@PathVariable int voto) {
+			@PathVariable int voto) throws Exception {
 		Votacao votacao = new Votacao();
 		Sessao sessaoBanco = new Sessao();
-		sessaoBanco = preparaParaVoto(pautaId, associadoId, voto, votacao);
+		try {
+			sessaoBanco = preparaParaVoto(pautaId, associadoId, voto, votacao);
+		} catch (Exception e) {
+			throw new Exception("Associado não encontrado!");
+		}
 		return voto(votacao, sessaoBanco);
 	}
 
-	private Sessao preparaParaVoto(int pautaId, int associadoId, int voto, Votacao votacao) {
+	private Sessao preparaParaVoto(int pautaId, int associadoId, int voto, Votacao votacao) throws Exception {
 		Sessao sessaoBanco;
 		buscaPautaValida(pautaId, votacao);
 		buscaAssociadoValido(associadoId, votacao);
 		validaVinculaVoto(voto, votacao);
 		sessaoBanco = sessaoService.findUltimaSessao();
 		return sessaoBanco;
+	}
+
+	private void buscaAssociadoValido(int associadoId, Votacao votacao) throws Exception {
+		Optional<Associado> associadoOptional = null;
+		try {
+				associadoOptional =associadoService.findById(associadoId);
+		}catch (Exception e) {
+			throw new Exception("Associado não encontrado!");
+		}
+		
+		if (associadoOptional.get() != null
+				&& associadoOptional.get().getCpf() != null
+				&& validaCPFService.verificaIntegraçãoCPF(associadoOptional.get().getCpf())) {
+			new ResponseEntity<>("CPF do associado está inválido!", new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+		if (associadoOptional.get() != null) {
+			votacao.setAssociado(associadoOptional.get());
+		}
 	}
 
 	private ResponseEntity<String> voto(Votacao votacao, Sessao sessaoBanco) {
@@ -105,21 +128,8 @@ public class VotacaoController {
 	// Metodo para recuperar a pauta em que deseja efetuar o voto
 	private void buscaPautaValida(int pautaId, Votacao votacao) {
 		Optional<Pauta> pautaOptional = pautaService.findById(pautaId);
-		if (pautaOptional != null) {
+		if (!pautaOptional.isPresent()) {
 			votacao.setPauta(pautaOptional.get());
-		}
-	}
-
-	// Metodo para recuperar a associado que deseja efetuar o voto na pauta
-	private void buscaAssociadoValido(int associadoId, Votacao votacao) {
-		Optional<Associado> associadoOptional = associadoService.findById(associadoId);
-		if (associadoOptional == null) {
-			new ResponseEntity<>("Associado não encontrado!", new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
-		}
-		if (validaCPFService.verificaIntegraçãoCPF(associadoOptional.get().getCpf()))
-			new ResponseEntity<>("CPF do associado está inválido!", new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
-		if (associadoOptional != null) {
-			votacao.setAssociado(associadoOptional.get());
 		}
 	}
 
