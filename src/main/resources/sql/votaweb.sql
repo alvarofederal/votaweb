@@ -10,6 +10,8 @@ drop table `votaweb_db`.`votacao`;
 drop table `votaweb_db`.`sessao`;
 drop table `votaweb_db`.`pauta`;
 drop table `votaweb_db`.`associado`;
+drop table `votaweb_db`.`resultado_votacao`;
+
 
 # ************************************************************
 # *************************PAUTA******************************

@@ -4,17 +4,13 @@
 # ************************************************************
 
 # ************************************************************
-# Base de Dados: heroku_96f23168d824f01
-# Tempo de Geração: 2021-03-06
-# ************************************************************
-
-# ************************************************************
 # *************************DROPS******************************
 # ************************************************************
 drop table `heroku_96f23168d824f01`.`votacao`;
 drop table `heroku_96f23168d824f01`.`sessao`;
 drop table `heroku_96f23168d824f01`.`pauta`;
 drop table `heroku_96f23168d824f01`.`associado`;
+drop table `heroku_96f23168d824f01`.`resultado_votacao`;
 
 # ************************************************************
 # *************************PAUTA******************************
@@ -101,6 +97,23 @@ CREATE TABLE `heroku_96f23168d824f01`.`votacao`
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `heroku_96f23168d824f01`.`votacao`
+    CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
+    ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
+
+
+# ************************************************************
+# ***************RESULTADO VOTACAO****************************
+# ************************************************************
+CREATE TABLE `heroku_96f23168d824f01`.`resultado_votacao`
+(
+    `id`         INT NOT NULL,
+    `total`      int(11) DEFAULT NULL,
+    `voto_sim`   int(11) DEFAULT NULL,
+    `voto_nao`   int(11) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `heroku_96f23168d824f01`.`resultado_votacao`
     CHANGE COLUMN `id` `id` INT (11) NOT NULL AUTO_INCREMENT,
     ADD UNIQUE INDEX `id_UNIQUE` (`id` ASC);
 

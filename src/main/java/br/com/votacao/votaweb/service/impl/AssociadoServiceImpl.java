@@ -17,7 +17,7 @@ public class AssociadoServiceImpl implements AssociadoService {
 		AssociadoRepository associadoRepository;
 
 		@Override
-		public Optional<Associado> findById(long id) {
+		public Optional<Associado> findById(int id) {
 			return associadoRepository.findById(id);
 		}
 
@@ -36,5 +36,13 @@ public class AssociadoServiceImpl implements AssociadoService {
 			return associadoRepository.findAssociadoCPF(cpf);
 		}
 
+		@Override
+		public Associado findUltimoAssociado() {
+			return associadoRepository.findUltimoAssociado();
+		}
 
+		@Override
+		public void deleteAssociado(Associado associado) {
+			associadoRepository.delete(associado);			
+		}
 }

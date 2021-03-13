@@ -7,10 +7,14 @@ import br.com.votacao.votaweb.model.Pauta;
 
 public interface PautaService {
 
-	Optional<Pauta> findById(long id);
+	public Pauta save(Pauta pauta);
 
-	Pauta save(Pauta pauta);
+	public List<Pauta> findAll();
 
-	Optional<List<Pauta>> findAll();
+	public void deletePauta(Pauta pauta);
+
+	public Pauta findUltimaPauta();
+
+	public Optional<Pauta> findById(Integer id);
 
 }

@@ -15,11 +15,11 @@ public class ResultadoVotacaoServiceImpl implements ResultadoVotacaoService {
 	ResultadosVotacaoRepository resultadosVotacaoRepository;
 
 	@Override
-	public VotacaoDto findResultadoVotacaoPorPauta(Long id) {
+	public VotacaoDto findResultadoVotacaoPorPauta(int id) {
 		ResultadoVotacao votacao = resultadosVotacaoRepository.findResultadoVotacaoPorPauta(id);
-		Integer total = votacao.getTotal();
-		Integer votoSim = votacao.getVotoSim();
-		Integer votoNao = votacao.getVotoNao();
+		int total = votacao.getTotal();
+		int votoSim = votacao.getVotoSim();
+		int votoNao = votacao.getVotoNao();
 		VotacaoDto votacaoDto = new VotacaoDto(total, votoSim, votoNao);
 		return votacaoDto;
 	}

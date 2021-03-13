@@ -17,7 +17,7 @@ public class PautaServiceImpl implements PautaService {
 	PautaRepository pautaRepository;
 
 	@Override
-	public Optional<Pauta> findById(long id) {
+	public Optional<Pauta> findById(Integer id) {
 		return pautaRepository.findById(id);
 	}
 
@@ -25,9 +25,19 @@ public class PautaServiceImpl implements PautaService {
 	public Pauta save(Pauta pauta) {
 		return pautaRepository.save(pauta);
 	}
+	
+	@Override
+	public void deletePauta(Pauta pauta) {
+		pautaRepository.delete(pauta);
+	}
 
 	@Override
-	public Optional<List<Pauta>> findAll() {
-		return Optional.of(pautaRepository.findAll());
+	public List<Pauta> findAll() {
+		return pautaRepository.findAll();
+	}
+	
+	@Override
+	public Pauta findUltimaPauta() {
+		return pautaRepository.findUltimaPauta();
 	}
 }

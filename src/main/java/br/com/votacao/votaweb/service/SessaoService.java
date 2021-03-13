@@ -7,17 +7,19 @@ import br.com.votacao.votaweb.model.Sessao;
 
 public interface SessaoService {
 
-	boolean isSessaoAberta();
+	public boolean isSessaoAberta();
 
-	boolean isSessaoAbertaParaVotacao(Sessao sessaoBanco);
+	public boolean isSessaoAbertaParaVotacao(Sessao sessaoBanco);
 
-	Optional<Sessao> findById(long id);
+	public Optional<Sessao> findById(int id);
 
-	void save(Sessao sessao);
+	public Sessao save(Sessao sessao);
 
-	Optional<List<Sessao>> findAll();
+	public List<Sessao> findAll();
 
-	Sessao ultimaSessao();
+	public Sessao findUltimaSessao();
+
+	public void deleteSessao(Sessao sessao);
 
 
 

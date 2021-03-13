@@ -8,19 +8,42 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "associado")
-@Data
 public class Associado implements Serializable {
 
 	private static final long serialVersionUID = -7431142185740707611L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
+	
     private String nomeAssociado;
+    
     private String cpf;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNomeAssociado() {
+		return nomeAssociado;
+	}
+
+	public void setNomeAssociado(String nomeAssociado) {
+		this.nomeAssociado = nomeAssociado;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
     
 }

@@ -7,11 +7,15 @@ import br.com.votacao.votaweb.model.Votacao;
 
 public interface VotacaoService {
 
-	Optional<Votacao> findById(long id);
+	public Optional<Votacao> findById(int id);
 
-	Votacao save(Votacao votacao);
+	public Votacao save(Votacao votacao);
 
-	Optional<List<Votacao>> findAll();
+	public Optional<List<Votacao>> findAll();
 
-	Votacao verificarVotoAssociado(Votacao votacao);
+	public Votacao verificarVotoAssociado(Votacao votacao);
+	
+	public Votacao findUltimaVotacao();
+
+	public void deleteVotacao(Votacao votacao);
 }

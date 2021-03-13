@@ -2,38 +2,38 @@ package br.com.votacao.votaweb.model;
 
 public class VotacaoDto {
 	
-	public Integer total; 
-	public Integer votoSim; 
-	public Integer votoNao;
+	public int total; 
+	public int votoSim; 
+	public int votoNao;
 	
-	public VotacaoDto(Integer total, Integer votoSim, Integer votoNao) {
+	public VotacaoDto(int total, int votoSim, int votoNao) {
 		super();
 		this.total = total;
 		this.votoSim = votoSim;
 		this.votoNao = votoNao;
 	}
 	
-	public Integer getTotal() {
+	public int getTotal() {
 		return total;
 	}
 	
-	public void setTotal(Integer total) {
+	public void setTotal(int total) {
 		this.total = total;
 	}
 	
-	public Integer getVotoSim() {
+	public int getVotoSim() {
 		return votoSim;
 	}
 	
-	public void setVotoSim(Integer votoSim) {
+	public void setVotoSim(int votoSim) {
 		this.votoSim = votoSim;
 	}
 	
-	public Integer getVotoNao() {
+	public int getVotoNao() {
 		return votoNao;
 	}
 	
-	public void setVotoNao(Integer votoNao) {
+	public void setVotoNao(int votoNao) {
 		this.votoNao = votoNao;
 	} 
 	

@@ -8,17 +8,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "pauta")
-@Data
 public class Pauta implements Serializable {
 
 	private static final long serialVersionUID = 4234900483575472396L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
+	
     private String nomePauta;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNomePauta() {
+		return nomePauta;
+	}
+
+	public void setNomePauta(String nomePauta) {
+		this.nomePauta = nomePauta;
+	}
+    
 }

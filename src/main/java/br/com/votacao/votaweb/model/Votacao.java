@@ -10,18 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "votacao")
-@Data
 public class Votacao implements Serializable {
 
 	private static final long serialVersionUID = -6622406453767205375L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private int id;
 
 	@OneToOne
 	@JoinColumn(name = "id_pauta")
@@ -35,6 +32,58 @@ public class Votacao implements Serializable {
 	@JoinColumn(name = "id_sessao")
 	private Sessao sessao;
 
-	private Long voto;
+	private int voto;
+	
+	public Votacao() {
 
+	}
+
+	public Votacao(int id, Associado associado, Pauta pauta,  Sessao sessao, int voto) {
+		this.id = id;
+		this.associado = associado;
+		this.pauta = pauta;
+		this.sessao = sessao;
+		this.voto = voto;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Pauta getPauta() {
+		return pauta;
+	}
+
+	public void setPauta(Pauta pauta) {
+		this.pauta = pauta;
+	}
+
+	public Associado getAssociado() {
+		return associado;
+	}
+
+	public void setAssociado(Associado associado) {
+		this.associado = associado;
+	}
+
+	public Sessao getSessao() {
+		return sessao;
+	}
+
+	public void setSessao(Sessao sessao) {
+		this.sessao = sessao;
+	}
+
+	public int getVoto() {
+		return voto;
+	}
+
+	public void setVoto(int voto) {
+		this.voto = voto;
+	}
+	
 }

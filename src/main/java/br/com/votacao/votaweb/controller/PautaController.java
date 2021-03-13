@@ -29,7 +29,7 @@ public class PautaController {
 	}
 
 //    @GetMapping("/v1/pautas/{id}")
-//    public ResponseEntity<Pauta> buscaPorId(@PathVariable Long id) {
+//    public ResponseEntity<Pauta> buscaPorId(@PathVariable int id) {
 //        return ResponseEntity.ok().body(pautaRepository.findById(id).get());
 //    }
 

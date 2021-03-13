@@ -18,12 +18,12 @@ public class ResultadoVotacaoController {
 	private ResultadoVotacaoService resultadoVotacaoService;
 
 	@GetMapping("/v1/resultado-votacao/{pautaId}")
-	public ResultadoVotacao resultadoVotos(@PathVariable Long pautaId) {
+	public ResultadoVotacao resultadoVotos(@PathVariable int pautaId) {
 		VotacaoDto votacaoDto = resultadoVotacaoService.findResultadoVotacaoPorPauta(pautaId);
 		ResultadoVotacao resultadoVotacao = new ResultadoVotacao(); 
-		resultadoVotacao.setTotal(votacaoDto.getTotal().intValue());
-		resultadoVotacao.setVotoSim(votacaoDto.getVotoSim().intValue());
-		resultadoVotacao.setVotoNao(votacaoDto.getVotoNao().intValue());
+		resultadoVotacao.setTotal(votacaoDto.getTotal());
+		resultadoVotacao.setVotoSim(votacaoDto.getVotoSim());
+		resultadoVotacao.setVotoNao(votacaoDto.getVotoNao());
 		return resultadoVotacao;
 	}
 

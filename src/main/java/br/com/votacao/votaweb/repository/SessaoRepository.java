@@ -7,9 +7,8 @@ import org.springframework.stereotype.Repository;
 import br.com.votacao.votaweb.model.Sessao;
 
 @Repository
-public interface SessaoRepository extends JpaRepository<Sessao, Long> {
+public interface SessaoRepository extends JpaRepository<Sessao, Integer> {
 
     @Query(value = "SELECT * FROM Sessao s ORDER BY s.id DESC LIMIT 1", nativeQuery = true)
     Sessao findUltimaSessao();
-    
 }

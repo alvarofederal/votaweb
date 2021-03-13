@@ -17,13 +17,13 @@ public class SessaoServiceImpl implements SessaoService {
 	@Autowired
 	SessaoRepository sessaoRepository;
 
-	public Sessao ultimaSessao() {
+	public Sessao findUltimaSessao() {
 		return sessaoRepository.findUltimaSessao();
 	}
 
 	public boolean isSessaoAberta() {
 		Sessao sessaoBanco = new Sessao();
-		sessaoBanco = ultimaSessao();
+		sessaoBanco = findUltimaSessao();
 		if (sessaoBanco != null) {
 			if (VotaWebUtils.convertStringToTimestamp(sessaoBanco.getTerminoSessao())
 					.before(VotaWebUtils.convertStringToTimestamp(VotaWebUtils.nowString()))) {
@@ -48,18 +48,24 @@ public class SessaoServiceImpl implements SessaoService {
 	}
 
 	@Override
-	public Optional<Sessao> findById(long id) {
+	public Optional<Sessao> findById(int id) {
 		return sessaoRepository.findById(id);
 	}
 
 	@Override
-	public void save(Sessao sessao) {
-		sessaoRepository.save(sessao);
+	public Sessao save(Sessao sessao) {
+		return sessaoRepository.save(sessao);
 	}
 
 	@Override
-	public Optional<List<Sessao>> findAll() {
-		return Optional.of(sessaoRepository.findAll());
+	public void deleteSessao(Sessao sessao) {
+		sessaoRepository.delete(sessao);			
+	}
+	
+
+	@Override
+	public List<Sessao> findAll() {
+		return sessaoRepository.findAll();
 	}
 
 }

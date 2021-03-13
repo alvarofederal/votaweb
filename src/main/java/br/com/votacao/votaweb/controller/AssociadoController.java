@@ -35,7 +35,7 @@ public class AssociadoController {
 	}
 
     @GetMapping("/v1/associados/{id}")
-    public Optional<Associado> buscaPorId(@PathVariable Long id) {
+    public Optional<Associado> buscaPorId(@PathVariable int id) {
         return associadoService.findById(id);
     }
 

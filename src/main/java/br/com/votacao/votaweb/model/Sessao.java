@@ -17,18 +17,15 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "sessao")
-@Data
 public class Sessao implements Serializable {
 
 	private static final long serialVersionUID = 597336369274149345L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private int id;
 
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm", iso = ISO.DATE_TIME)
@@ -41,11 +38,44 @@ public class Sessao implements Serializable {
 	private String terminoSessao;
 
 	private Boolean mensagemTermino;
-
+	
 	public boolean isDataTerminoExpirada(String terminoSessao) {
 		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneId.systemDefault());
 		Instant result = Instant.from(formatter.parse(terminoSessao));
 		boolean flag = result.isBefore(Instant.now());
 		return flag;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getInicioSessao() {
+		return inicioSessao;
+	}
+
+	public void setInicioSessao(String inicioSessao) {
+		this.inicioSessao = inicioSessao;
+	}
+
+	public String getTerminoSessao() {
+		return terminoSessao;
+	}
+
+	public void setTerminoSessao(String terminoSessao) {
+		this.terminoSessao = terminoSessao;
+	}
+
+	public Boolean getMensagemTermino() {
+		return mensagemTermino;
+	}
+
+	public void setMensagemTermino(Boolean mensagemTermino) {
+		this.mensagemTermino = mensagemTermino;
+	}
+	
 }

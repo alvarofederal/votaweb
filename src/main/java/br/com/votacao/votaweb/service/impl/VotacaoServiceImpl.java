@@ -14,10 +14,10 @@ import br.com.votacao.votaweb.service.VotacaoService;
 public class VotacaoServiceImpl implements VotacaoService {
 
 	@Autowired
-	VotacaoRepository votacaoRepository;
+	public VotacaoRepository votacaoRepository;
 
 	@Override
-	public Optional<Votacao> findById(long id) {
+	public Optional<Votacao> findById(int id) {
 		return votacaoRepository.findById(id);
 	}
 
@@ -38,5 +38,15 @@ public class VotacaoServiceImpl implements VotacaoService {
 				votacao.getAssociado().getId(),
 				votacao.getPauta().getId());
 		return votacaoBanco;
+	}
+
+	@Override
+	public Votacao findUltimaVotacao() {
+		return votacaoRepository.findUltimaVotacao();
+	}
+
+	@Override
+	public void deleteVotacao(Votacao votacao) {
+		votacaoRepository.delete(votacao);
 	}
 }

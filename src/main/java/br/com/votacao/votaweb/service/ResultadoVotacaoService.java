@@ -4,6 +4,6 @@ import br.com.votacao.votaweb.model.VotacaoDto;
 
 public interface ResultadoVotacaoService{
 
-	public VotacaoDto findResultadoVotacaoPorPauta(Long id);
+	public VotacaoDto findResultadoVotacaoPorPauta(int id);
 
 }
