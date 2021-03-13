@@ -8,6 +8,7 @@ se encontra na URL https://votaweb.herokuapp.com/
 
 #### URL'S DA API
 API's com SWAGGER no Heroku: https://votaweb.herokuapp.com/swagger-ui.html
+
 API's com SWAGGER localhost: https://localhost:8080/swagger-ui.html
 
 #### URL'S DA DAS FUNCIONALIDADES DA API
@@ -59,24 +60,19 @@ Caso o CPF seja válido, a API retornará se o usuário pode (ABLE_TO_VOTE) ou n
 
 
 #### Tarefa Bônus 2 - Mensageria e filas
-
 Classificação da informação: Uso Interno O resultado da votação precisa ser informado para o restante da plataforma, isso deve ser feito preferencialmente através de mensageria. Quando a sessão de votação fechar, poste uma mensagem com o resultado da votação.
 
 
 #### Tarefa Bônus 3 - Performance
-
 Imagine que sua aplicação possa ser usada em cenários que existam centenas de milhares de votos. Ela deve se comportar de maneira performática nesses cenários;
 Testes de performance são uma boa maneira de garantir e observar como sua aplicação se comporta.
 
 
 #### Tarefa Bônus 4 - Versionamento da API
-
 Como você versionaria a API da sua aplicação? Que estratégia usar?
-
 
 Tecnologias utilizadas para o desenvolvimento desta API.
 Java 8, Springboot, Maven, Swagger, JUnit, Hibernate, MySql, Github, Heroku,
-
 
 #### Tarefa Bônus 1 - Integração com sistemas externos
 Foi criada uma integração com o sistema https://user-info.herokuapp.com/users/{cpf} para validar os CPF's ao cadastrar Associados;
@@ -92,3 +88,13 @@ Existirem várias formas de versionamento, foi utilizado para o desenvolvimento 
 a escrita da versão na URL.
 /api/v1
 /api/v2
+
+
+Para utilização da API, é importante seguir alguns passos:
+-Gravar uma pauta;
+-Gravar quantos associados desejam participar da votação;
+-Deverá agora, abrir uma sessão, a qual vai durar por default 1 minuto, ou durar o tempo que o administradores deseja
+
+Para executar localmente basta criar um database no mysql, apontar as credencias corretas, e acessar pelo postmam ou pelo swagger
+
+
