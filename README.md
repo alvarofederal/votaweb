@@ -13,29 +13,45 @@ API's com SWAGGER localhost: https://localhost:8080/swagger-ui.html
 
 #### URL'S DA DAS FUNCIONALIDADES DA API
 ########################SESSÕES########################
-https://votaweb.herokuapp.com/api/v1/sessoes
-https://votaweb.herokuapp.com/api/v2/sessoes
-https://votaweb.herokuapp.com/api/v1/sessoes/{id}
-https://votaweb.herokuapp.com/api/v2/sessoes/{id}
-https://votaweb.herokuapp.com/api/v1/sessoes/nova-sessao
-https://votaweb.herokuapp.com/api/v1/sessoes/nova-sessao/{tempoSessao}
+https://votaweb.herokuapp.com/api/v1/sessoes 
+
+https://votaweb.herokuapp.com/api/v1/sessoes/{id} 
+
+https://votaweb.herokuapp.com/api/v1/sessoes/nova-sessao 
+
+https://votaweb.herokuapp.com/api/v1/sessoes/nova-sessao/{tempoSessao} 
+
+
+https://votaweb.herokuapp.com/api/v2/sessoes 
+
+https://votaweb.herokuapp.com/api/v2/sessoes/{id} 
+
 
 ########################VOTAÇÕES#######################
-https://votaweb.herokuapp.com/api/v1/votacoes
-https://votaweb.herokuapp.com/api/v1/votacoes/{id}
+https://votaweb.herokuapp.com/api/v1/votacoes 
+
+https://votaweb.herokuapp.com/api/v1/votacoes/{id} 
+
 
 #######################ASSOCIADOS#######################
-https://votaweb.herokuapp.com/api/v1/sessoes/v1/associados
-https://votaweb.herokuapp.com/api/v1/associados/associado
-https://votaweb.herokuapp.com/api/v1/associados/{id}
+https://votaweb.herokuapp.com/api/v1/associados 
+
+https://votaweb.herokuapp.com/api/v1/associados/associado 
+
+https://votaweb.herokuapp.com/api/v1/associados/{id} 
+
 
 ###########################PAUTAS#######################
-https://votaweb.herokuapp.com/api/v1/pautas
-https://votaweb.herokuapp.com/api/v1/pautas/pauta
-https://votaweb.herokuapp.com/api/v1/pautas/{id}
+https://votaweb.herokuapp.com/api/v1/pautas 
+
+https://votaweb.herokuapp.com/api/v1/pautas/pauta 
+
+https://votaweb.herokuapp.com/api/v1/pautas/{id} 
+
 
 ##########################VOTO##########################
-https://votaweb.herokuapp.com/api/v1/votacoes/pauta/{pautaId}/associado/{associadoId}/votar/{voto}
+https://votaweb.herokuapp.com/api/v1/votacoes/pauta/{pautaId}/associado/{associadoId}/votar/{voto} 
+
 
 
 #### DESCRIÇÃO DO DESAFIO E INSTRUÇÕES PARA A EXECUÇÃO 
@@ -90,6 +106,7 @@ a escrita da versão na URL.
 /api/v2
 
 
+#### Tarefa Bônus 5 - Notas de exe - 
 Para utilização da API, é importante seguir alguns passos:
 -Gravar uma pauta;
 -Gravar quantos associados desejam participar da votação;
